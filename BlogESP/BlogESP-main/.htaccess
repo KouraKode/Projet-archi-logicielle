@@ -1,0 +1,52 @@
+Options +FollowSymlinks
+RewriteEngine On
+RewriteBase /
+
+#---------------------------#
+# links for navigation      #
+#---------------------------#
+
+# Réécriture de l'URL pour afficher "article" lorsque index.php est appelé
+RewriteCond "%{REQUEST_URI}" "articles"
+RewriteRule "^articles/([0-9]+)$"  "index\.php?categorie=$1" [L]
+RewriteRule ^accueille$ index.php [L]
+
+# Inscription
+RewriteCond "%{REQUEST_URI}" "inscription"
+RewriteRule ^inscription$ Views/inscription.php [L]
+
+#---------------------------#
+# links for controllers     #
+#---------------------------#
+
+RewriteRule ^deconnecter$ "Controllers/loginController\.php?logout=true" [L]
+
+RewriteRule ^ajouter_article$  "Controllers/articleController\.php?methode=ajouter" [L]
+
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteRule ^article/([0-9]+)$  "Controllers/articleController\.php?article=$1" [L]
+
+RewriteRule ^modifier_article/([0-9]+)$ "Controllers/articleController\.php?methode=modifier&id=$1" [L]
+
+RewriteRule ^supprimer_article/([0-9]+)$ "Controllers/articleController\.php?methode=supprimer&id=$1" [L]
+
+RewriteRule ^superUser$ "Controllers/superUsersController.php" [L]
+
+RewriteCond %{REQUEST_METHOD} =POST
+RewriteRule ^ajouter_utilisateur$ "Controllers/superUsersController.php?methode=ajouter" [L]
+
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteRule ^ajouter_utilisateur$ "Controllers/superUsersController.php?methode=ajouter" [L]
+
+RewriteCond %{REQUEST_METHOD} =POST
+RewriteRule ^modifier_utilisateur/([0-9]+)$ "Controllers/superUsersController.php?methode=modifier&id=$1" [L]
+
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteRule ^modifier_utilisateur/([0-9]+)$ "Controllers/superUsersController.php?methode=modifier&id=$1" [L]
+
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteRule ^supprimer_utilisateur/([0-9]+)$ "Controllers/superUsersController.php?methode=supprimer&id=$1" [L]
+
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteRule ^supprimer_token/([0-9]+)$ "Controllers/superUsersController.php?methode=supprimerToken&id=$1" [L]
+#--------------------------------#

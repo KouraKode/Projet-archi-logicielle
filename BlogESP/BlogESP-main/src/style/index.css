@@ -1,0 +1,31 @@
+:root {
+  --primary: #c778dd !important;
+  --gray: #abb2bf;
+  --background: #282c33;
+}
+
+* {
+  /* box-shadow: 0 0 0 3px red; */
+  inset: 0;
+}
+*,
+::befor,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+header {
+  top: 0px;
+  margin: 0px;
+  background-color: #282c33;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 97vh;
+}
+
+footer {
+  margin-top: auto;
+}
