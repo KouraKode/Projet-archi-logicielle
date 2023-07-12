@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/home.css' %}">
+    <title>Blog-Login</title>
+</head>
+<body>
+    <h1>Liste des Utilisateurs</h1>
+    <a class="btn-create" href="{% url 'create' %}">Nouveau Utilisateur</a>
+    <table id="users">
+        <tr>
+            <th>Username</th>
+            <th>Is Administrator</th>
+            <th>Actions</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td> {% if user.admin == 0 %}
+                No
+                {% else %}
+                Yes
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'delete' username=user.username  %}"><button>Supprimer</button></a>
+                <a href="{% url 'update' username=user.username %}"><button>Modifier</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
+
+

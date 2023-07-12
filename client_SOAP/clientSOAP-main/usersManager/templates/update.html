@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <link rel="stylesheet" href="{% static '/css/home.css' %}"> {% endcomment %}
+    <title>Blog-Login</title>
+</head>
+<body>
+    <h1>Modification d'un utilisateur</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="username" value="{{ user.username }}" readonly="readonly">
+        <label for="newUsername">Nom d'utilisateur</label>
+        <input type="text" name="newUsername" id="newUsername" value="{{ user.username }}" required><br><br>
+        <label for="password" >Mot de passe</label>
+        <input type="password" name="password" id="password" value="{{ user.password }}" required><br><br>
+        <label for="newState">Administrateur</label>
+        <input type="checkbox" name="newState" id="newState" value="1" {% if user.admin == 1 %} checked {% endif %}><br><br>
+        <input type="submit" value="Modifier">
+</body>
+</html>
+
+
